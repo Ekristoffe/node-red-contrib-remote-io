@@ -6,8 +6,6 @@ module.exports = function(RED) {
        var node = this;
        var bitSize = parseInt(n.outputs);
        var bitOffset = n.offset;
-       var topic = n.topic;
-       var outputMsg = {};
 
         this.on('input', function(msg) {
             var p = msg.payload >>> bitOffset;
@@ -19,10 +17,8 @@ module.exports = function(RED) {
                 p = p << 1; // divide by two and keep as an integer
                 }
                 o = m.reverse();
-                outputMsg.topic = topic;
-                outputMsg.payload = o;
             node.status({fill: "green",shape: "ring",text: bitSize});
-            node.send(outputMsg);
+            node.send(o);
         });
     }
     RED.nodes.registerType("Digital Input",digitalInput);

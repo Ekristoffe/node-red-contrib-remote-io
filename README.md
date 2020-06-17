@@ -4,7 +4,7 @@
 Modules are to be used at your own risk.  Author accepts no liability for resluts of nodes use.  
 
 ##Example
-![Example](http://i.imgur.com/m2s6JRl.png)
+![Remote I/O](https://www.wago.com/media/images/hf2/hff/9540396417054.jpg)
 
 ##Version history
 * 0.0.1	First release

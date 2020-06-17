@@ -10,9 +10,11 @@ module.exports = function(RED) {
 
         var topic = config.topic;
 
-        var outDataObj = {topic: topic};
+        var outData = {};
+
+        var testInput = config;
         
-        var diagMsg = "I'm Waiting";
+        var diagMsg = "Im Waiting";
         
         var statusColor;
         
@@ -62,10 +64,9 @@ module.exports = function(RED) {
                 voltsHold[0] = parseInt(mbInData.payload[4] + (mbInData.payload[5] << 8));
                 voltsHold[1] = parseInt(mbInData.payload[6] + (mbInData.payload[7] << 8));
                 voltsHold[2] = parseInt(mbInData.payload[8] + (mbInData.payload[9] << 8));
-                voltsL1 = voltsHold[0].toString() / 100;
-                voltsL2 = voltsHold[1].toString() / 100;
-                voltsL3 = voltsHold[2].toString() / 100;
-
+                voltsL1 = {value: voltsHold[0].toString() / 100};
+                voltsL2 = {value: voltsHold[1].toString() / 100};
+                voltsL3 = {value: voltsHold[2].toString() / 100};
                 context.set('voltsL1', voltsL1);
                 context.set('voltsL2', voltsL2);
                 context.set('voltsL3', voltsL3);
@@ -77,9 +78,9 @@ module.exports = function(RED) {
                 ampresHold[0] = parseInt(mbInData.payload[4] + (mbInData.payload[5] << 8));
                 ampresHold[1] = parseInt(mbInData.payload[6] + (mbInData.payload[7] << 8));
                 ampresHold[2] = parseInt(mbInData.payload[8] + (mbInData.payload[9] << 8));
-                ampresL1 = ampresHold[0].toString() / 1000;
-                ampresL2 = ampresHold[1].toString() / 1000;
-                ampresL3 = ampresHold[2].toString() / 1000;
+                ampresL1 = {value: ampresHold[0].toString() / 1000};
+                ampresL2 = {value: ampresHold[1].toString() / 1000};
+                ampresL3 = {value: ampresHold[2].toString() / 1000};
                 context.set('ampresL1', ampresL1);
                 context.set('ampresL2', ampresL2);
                 context.set('ampresL3', ampresL3);
@@ -91,25 +92,23 @@ module.exports = function(RED) {
                 freqHold[0] = parseInt(mbInData.payload[4] + (mbInData.payload[5] << 8));
                 freqHold[1] = parseInt(mbInData.payload[6] + (mbInData.payload[7] << 8));
                 freqHold[2] = parseInt(mbInData.payload[8] + (mbInData.payload[9] << 8));
-                freqL1 = freqHold[0].toString() / 1000;
-                freqL2 = freqHold[1].toString() / 1000;
-                freqL3 = freqHold[2].toString() / 1000;
+                freqL1 = {value: freqHold[0].toString() / 1000};
+                freqL2 = {value: freqHold[1].toString() / 1000};
+                freqL3 = {value: freqHold[2].toString() / 1000};
                 context.set('freqL1', freqL1);
                 context.set('freqL2', freqL2);
                 context.set('freqL3', freqL3);
                 getDataState = 1;
     }
-
-    outDataObj.payload = {leg1: {volts: voltsL1, current: ampresL1, frequncy: freqL1}};
-    outDataObj.payload = {leg2: {volts: voltsL2, current: ampresL2, frequncy: freqL2}};
-    outDataObj.payload = {leg3: {volts: voltsL3, current: ampresL3, frequncy: freqL3}};
-
         node.status({fill: statusColor,shape: "ring",text: diagMsg.payload});
         context.set('getDataState', getDataState);
-        //var outData = {topic: topic, payload: {voltage: [voltsL1.payload, voltsL2.payload, voltsL3.payload], current: [ampresL1.payload, ampresL2.payload, ampresL3.payload], frequency: [freqL1.payload, freqL2.payload, freqL3.payload]}};
-        //node.send([diagMsg, mbOutData, voltsL1, voltsL2, voltsL3, ampresL1, ampresL2, ampresL3, freqL1, freqL2, freqL3, outData]);
-        node.send(mbOutData, outDataObj);
+
+        outData.topic = topic;
+        outData.payload = {L1: {voltage: voltsL1.value, current: ampresL1.value, frequency: freqL1.value}, L2: {voltage: voltsL2.value, current: ampresL2.value, frequency: freqL2.value}, L3: {voltage: voltsL3.value, current: ampresL3.value, frequency: freqL3.value}};
+        node.send([mbOutData, outData]);
+        
         });
     }
     RED.nodes.registerType("Power Measurement",wago);
 };
+

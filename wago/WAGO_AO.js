@@ -10,7 +10,6 @@ module.exports = function(RED) {
        var low = n.low;
        var high = n.high;
        var prec = n.precision;
-       var topic = n.topic;
        var selectedProcess = n.selectedProcess;
 
        // scales number
@@ -116,10 +115,9 @@ module.exports = function(RED) {
                     } else {
                         scaledHold = scale(msg.payload, low, high, rawMinOutput, rawMaxOutput);
                     }
-                    outputMsg.payload = toFixed(scaledHold, prec); 
+                    outputMsg.payload = toFixed(scaledHold, 0); 
                     break;
             }
-            outputMsg.topic = topic;
             node.send(outputMsg);
         });
     }

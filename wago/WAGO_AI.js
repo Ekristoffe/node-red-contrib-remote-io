@@ -11,7 +11,6 @@ module.exports = function(RED) {
        var high = n.high;
        var prec = n.precision;
        var selectedProcess = n.selectedProcess;
-       var topic = n.topic;
 
        // scales number
      function scale(x, i_lo, i_hi, o_lo, o_hi)    {
@@ -118,7 +117,6 @@ module.exports = function(RED) {
                     	var scaledHold = scale(msg.payload, rawMinInput, rawMaxInput, low, high);
                     }
                     outputMsg.payload = parseFloat(toFixed(scaledHold, prec));
-                    outputMsg.topic = topic;
                 break;
             }
             node.send(outputMsg);

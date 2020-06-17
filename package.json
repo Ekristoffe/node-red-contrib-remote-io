@@ -1,9 +1,28 @@
-
+{
+  "_from": "node-red-contrib-remote-io",
+  "_id": "node-red-contrib-remote-io@3.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-0lqLr/O4hQdlku787op+e0q9ZPJEoevOcmBUABSpxqoDR40zoFFqe6XQpVRpK17/gv46TKohEmOmO+9D+Zsjdg==",
+  "_location": "/node-red-contrib-remote-io",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "node-red-contrib-remote-io",
+    "name": "node-red-contrib-remote-io",
+    "escapedName": "node-red-contrib-remote-io",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
   ],
-  "_resolved": "https://registry.npmjs.org/node-red-contrib-remote-io/-/node-red-contrib-remote-io-0.1.3.tgz",
-  "_shasum": "cdb907153af5c018d4ad0d1254a244fc3578f117",
-  "_spec": "node-red-contrib-remote-io@0.1.3",
-  "_where": "/data",
+  "_resolved": "https://registry.npmjs.org/node-red-contrib-remote-io/-/node-red-contrib-remote-io-3.1.0.tgz",
+  "_shasum": "c12aba749fdc453c84289e34961b1b1951866e58",
+  "_spec": "node-red-contrib-remote-io",
+  "_where": "/Users/FAEAdmin/Desktop",
   "bundleDependencies": false,
   "dependencies": {},
   "deprecated": false,
@@ -26,5 +45,5 @@
       "Power": "wago/WAGO_750_49X.js"
     }
   },
-  "version": "0.1.3"
+  "version": "3.1.0"
 }
