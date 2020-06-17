@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    RED.nodes.registerType('Digital Input',{
+        category: 'remote io',
+        color: '#EBEDEC',
+        defaults: {
+            name: {value:""},
+            outputs: {value: "8"},
+            offset: {value: "0"}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "iconDI.png",
+        label: function() {
+            return this.name||"Digital Input";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="Digital Input">
+    <div class="form-row">
+        <label for="node-input-outputs"><i class="fa fa-random"></i> <span data-i18n="function.label.outputs" ></span>Number Of Channels</label>
+        <input id="node-input-outputs" style="width: 60px;" value="8">
+    </div> 
+    <div class="form-row">
+        <label for="node-input-offset"><i class="fa fa-random"></i> <span data-i18n="function.label.offset" ></span>Bit Offset</label>
+        <input id="node-input-offset" style="width: 60px;" value="0">
+    </div> 
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="Digital Input">
+    <p>A node that parses modbus data to individual digital output pins.<br/>
+    
+    Select the desired size and offset of your module.  Pins are mapped from top to bottom as shown in image <br/>
+    <br/>
+    <img id="img" src="DI_node_pins.jpg"/>
+    The node will require proper offset if modbus register is being used for more than one digital module.<br/>
+    </p>
+</script>   

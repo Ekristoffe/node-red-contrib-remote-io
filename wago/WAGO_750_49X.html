@@ -1,0 +1,57 @@
+<script type="text/javascript">
+    RED.nodes.registerType('Power Measurement',{
+        category: 'remote io',
+        color: '#EBEDEC',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:12,
+        icon: "iconSP.png",
+        label: function() {
+            return this.name||"Power Measurement";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="Power Measurement">
+    <div class="form-row">
+        <label for="node-input-operation"><i class="icon-tag"></i> Operation</label>
+        <select type="text" id="node-input-operation" placeholder="Operation">
+            <option value="750-493">750-493</option>
+            <option value="750-494">750-494</option>
+            <option value="750-495">750-495</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tag"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+</script>
+ 
+<script type="text/x-red" data-help-name="Power Measurement">
+    <p>A node that parses modbus data for the WAGO 750-49X series power measurement module.<br/>
+    
+    Changing the module name will help identify multiple instances of the power measurement module.<br/>
+    <br/>
+    The node expects 12 words of data incoming from a Modbus node.  It will also output 4 words of data to a Modbus write node.<br/>
+    <br/>
+    <ol>
+        <li> Diagnosis message</li>
+        <li> Modbus Out Data</li>
+        <li> L1 Voltage ( int )</li>
+        <li> L2 Voltage ( int )</li>
+        <li> L3 Voltage ( int )</li>
+        <li> L1 Current ( int )</li>
+        <li> L2 Current ( int )</li>
+        <li> L3 Current ( int )</li>
+        <li> L1 Frequency ( int )</li>
+        <li> L2 Frequency ( int )</li>
+        <li> L3 Frequency ( int )</li>
+    </ol>
+    </p>
+</script>
