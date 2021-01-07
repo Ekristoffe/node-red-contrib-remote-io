@@ -1,5 +1,4 @@
-Node-RED contrib Remote IO
-===========================
+# Node-RED contrib Remote IO
 
 [![NPM](https://nodei.co/npm/node-red-contrib-remote-io.png)](https://nodei.co/npm/node-red-contrib-remote-io/)
 
@@ -12,13 +11,11 @@ Scaling functions and diagnostics are built in when available.
 	WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Getting Started
----------------
+## Getting Started
 [Adding nodes to the palette](https://nodered.org/docs/user-guide/runtime/adding-nodes) - Node-RED Documentation
 
-Documentation
--------------
-## - Typical pitfall
+## Documentation
+### - Typical pitfall
 With 750-3xx, 750-8xx, 750-9xx or 750-8xxx
 You dial with a WAGO Ethernet controller.
 Try to set outputs - but nothing happens!
@@ -31,13 +28,12 @@ Alternatively you can "Login" with CoDeSys-IDE and perform "Reset(original)".
 
 With 750-8xxx
 By default there is no Modbus server available, you must create your own Modbus server by using:
--   759-911: WAGO-I/O-PRO-CAA (CoDeSys 2.3)
--   2759-101: e!Cockpit
--   [KbusModbusSlave (Official)](https://github.com/WAGO/pfc-howtos/tree/master/HowTo_AddKbusModbusSlave)
--   [KbusModbusSlave (Development/Experimental)](https://github.com/Ekristoffe/HowTo_AddKbusModbusSlave)
+*   759-911: WAGO-I/O-PRO-CAA (CoDeSys 2.3)
+*   2759-101: e!Cockpit
+*   [KbusModbusSlave (Official)](https://github.com/WAGO/pfc-howtos/tree/master/HowTo_AddKbusModbusSlave)
+*   [KbusModbusSlave (Development/Experimental)](https://github.com/Ekristoffe/HowTo_AddKbusModbusSlave)
 
-Project Informations
---------------------
+## Project Informations
 [![Platform Node-RED](https://img.shields.io/badge/Platform-Node--RED-red)](https://nodered.org/)
 
 ### - Current version
