@@ -1,49 +1,44 @@
 {
-  "_from": "node-red-contrib-remote-io",
-  "_id": "node-red-contrib-remote-io@3.1.0",
-  "_inBundle": false,
-  "_integrity": "sha512-0lqLr/O4hQdlku787op+e0q9ZPJEoevOcmBUABSpxqoDR40zoFFqe6XQpVRpK17/gv46TKohEmOmO+9D+Zsjdg==",
-  "_location": "/node-red-contrib-remote-io",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "node-red-contrib-remote-io",
     "name": "node-red-contrib-remote-io",
-    "escapedName": "node-red-contrib-remote-io",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/node-red-contrib-remote-io/-/node-red-contrib-remote-io-3.1.0.tgz",
-  "_shasum": "c12aba749fdc453c84289e34961b1b1951866e58",
-  "_spec": "node-red-contrib-remote-io",
-  "_where": "/Users/FAEAdmin/Desktop",
-  "bundleDependencies": false,
-  "dependencies": {},
-  "deprecated": false,
-  "description": "A sample node for node-red",
-  "keywords": [
-    "node-red",
-    "wago",
-    "modbus",
-    "750",
-    "Thermocouple",
-    "Power Measurement"
-  ],
-  "name": "node-red-contrib-remote-io",
-  "node-red": {
-    "nodes": {
-      "DigitalIn": "wago/WAGO_DI.js",
-      "AnalogIn": "wago/WAGO_AI.js",
-      "Temp": "wago/WAGO_TEMP.js",
-      "AnalogOut": "wago/WAGO_AO.js",
-      "Power": "wago/WAGO_750_49X.js"
-    }
-  },
-  "version": "3.1.0"
+    "version": "3.1.0",
+    "description": "A node for reading and controlling remote IO",
+    "dependencies": {
+    },
+    "keywords": [
+        "node-red",
+        "wago",
+        "modbus",
+        "750",
+        "thermocouple",
+        "plc",
+        "rtd",
+        "automation",
+        "Power Measurement"
+    ],
+    "node-red": {
+        "nodes": {
+            "AnalogIn": "wago/WAGO_AI.js",
+            "AnalogOut": "wago/WAGO_AO.js",
+            "DigitalIn": "wago/WAGO_DI.js",
+            "DigitalOut": "wago/WAGO_DO.js",
+            "Temperature": "wago/WAGO_TEMP.js",
+            "DALI": "wago/WAGO_753_647.js",
+            "PowerMeasurement": "wago/WAGO_750_49X.js"
+        }
+    },
+    "author": {
+        "name" : "Jesse James Cox",
+        "url" : "https://github.com/jessejamescox"
+    },
+    "contributors": [
+        {
+            "name" : "Kurt Braun",
+            "url" : "https://github.com/braunku"
+        },
+        {
+            "name" : "Christophe Icard",
+            "url" : "https://github.com/Ekristoffe/"
+        }
+    ],
+    "license": "MIT"
 }
