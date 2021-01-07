@@ -16,7 +16,7 @@ module.exports = function(RED) {
                 // test top bit and set corresponding payload
                 _bit = {payload: ((_payload & 0x8000) ? true : false) };
                 _payload = _payload << 1; // divide by two and keep as an integer
-            })
+            });
             // for (var i=0; i<16; i++) {
             //     // test top bit and set corresponding payload
             //     m[i] = {payload: ((p & 0x8000) ? true : false) };

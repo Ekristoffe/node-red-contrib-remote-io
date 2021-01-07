@@ -20,10 +20,15 @@
             "AnalogIn": "wago/WAGO_AI.js",
             "AnalogOut": "wago/WAGO_AO.js",
             "DigitalIn": "wago/WAGO_DI.js",
-            "DigitalOut": "wago/WAGO_DO.js",
             "Temperature": "wago/WAGO_TEMP.js",
-            "DALI": "wago/WAGO_753_647.js",
-            "PowerMeasurement": "wago/WAGO_750_49X.js"
+            "PowerMeasurement": "wago/WAGO_750_49X.js",
+            "AnalogIn_v2": "wago/WAGO_AI_v2.js",
+            "AnalogOut_v2": "wago/WAGO_AO_v2.js",
+            "DigitalIn_v2": "wago/WAGO_DI_v2.js",
+            "DigitalOut_v2": "wago/WAGO_DO_v2.js",
+            "Temperature_v2": "wago/WAGO_TEMP_v2.js",
+            "DALI_v2": "wago/WAGO_753_647_v2.js",
+            "PowerMeasurement_v2": "wago/WAGO_750_49X_v2.js"
         }
     },
     "author": {

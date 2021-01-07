@@ -1,22 +1,20 @@
 <script type="text/javascript">
-    RED.nodes.registerType('Power Measurement',{
-        category: 'remote io',
-        color: '#EBEDEC',
+    RED.nodes.registerType("Power Measurement v2",{
+        category: "remote io",
+        color: "#EBEDEC",
         defaults: {
-            name: {value:""},
-            topic: {topic:""}
+            name: {value:""}
         },
         inputs:1,
-        outputs:2,
+        outputs:11,
         icon: "iconSP.png",
         label: function() {
-            return this.name||"Power Measurement";
-            return this.topic||"topic";
+            return this.name||"Power Measurement v2";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="Power Measurement">
+<script type="text/x-red" data-template-name="Power Measurement v2">
     <div class="form-row">
         <label for="node-input-operation"><i class="icon-tag"></i> Operation</label>
         <select type="text" id="node-input-operation" placeholder="Operation">
@@ -35,7 +33,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="Power Measurement">
+<script type="text/x-red" data-help-name="Power Measurement v2">
     <p>A node that parses modbus data for the WAGO 750-49X series power measurement module.<br/>
     
     Changing the module name will help identify multiple instances of the power measurement module.<br/>
@@ -43,9 +41,30 @@
     The node expects 12 words of data incoming from a Modbus node.  It will also output 4 words of data to a Modbus write node.<br/>
     <br/>
     <ol>
+        <li> Diagnosis message</li>
         <li> Modbus Out Data</li>
-        <li> Measured Values ( obj )</li>
+        <li> L1 Voltage ( int )</li>
+        <li> L2 Voltage ( int )</li>
+        <li> L3 Voltage ( int )</li>
+        <li> L1 Current ( int )</li>
+        <li> L2 Current ( int )</li>
+        <li> L3 Current ( int )</li>
+        <li> L1 Frequency ( int )</li>
+        <li> L2 Frequency ( int )</li>
+        <li> L3 Frequency ( int )</li>
+		
+		0:Current (rms)
+		1:Voltage (rms)
+		2:Activepower
+		3:Power factor
+		4:Active energy
+		5:Max. current
+		6:Max. voltage
+		7:Max. activepower
+		8:Frequency
+		9:Min. current
+		10:Min. voltage
+		11:Min. activepower
     </ol>
     </p>
 </script>
-

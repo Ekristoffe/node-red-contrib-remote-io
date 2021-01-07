@@ -1,0 +1,70 @@
+<script type="text/javascript">
+	RED.nodes.registerType("Temperature Input v2",{
+		category: "remote io",
+		color: "#EBEDEC",
+		defaults: {
+			wordOffset: {value: 0, required: true, validate: RED.validators.number()},
+			sensorType: {value:"RTD", required: true},
+			signalType: {value:"Celsius", required: true},
+			name: {value:""},
+			topic: {value:""}
+		},
+		inputs:1,
+		outputs:1,
+		icon: "iconAI.png",
+		label: function() {
+			return this.name||"Temperature Input v2";
+		}
+
+	});
+</script>
+
+<script type="text/x-red" data-template-name="Temperature Input v2">
+	<div class="form-row">
+		<label for="node-input-wordOffset"><i class="fa fa-random"></i> <span data-i18n="function.label.wordOffset" ></span>Word Offset</label>
+		<input type="text" id="node-input-wordOffset" style="width: 60px;" value="0">
+	</div>
+	<div class="form-row">
+		<label for="node-input-sensorType"><i class="icon-tag"></i> Sensor Type</label>
+		<select type="text" id="node-input-sensorType" placeholder="sensorType">
+			<option value="RTD">RTD</option>
+			<option value="Thermocouple">Thermocouple</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-signalType"><i class="icon-tag"></i> Signal Type</label>
+		<select type="text" id="node-input-signalType" placeholder="signalType">
+			<option value="Celsius">Celsius</option>
+			<option value="Farenheit">Farenheit</option>
+			<option value="Kelvin">Kelvin</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-name"><i class="icon-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+	<div class="form-row">
+		<label for="node-input-topic"><i class="icon-tag"></i> Topic</label>
+		<input type="text" id="node-input-topic" placeholder="Topic">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="Temperature Input v2">
+	<p>
+	A node that parses data from the temperature input modules of the WAGO 750 IO system to usable scaled data.<br/>
+	First select the desired offset of your temperature input.<br/>
+	Then select the desired sensor type, signal type, etc...<br/>
+	The node will automatically detect the input type:<br/>
+	&nbsp;- Array of Number, this can be from a Modbus read holding/input register request (Fc03 / Fc04).<br/>
+	&nbsp;- Number.<br/>
+	<br/>
+	The node will require proper offset if modbus register is being used for more than one digital module.<br/>
+	</p>
+	
+	<p>A node that parses modbus data for the temperature input modules on the WAGO 750 IO system<br/>
+	
+	Select the desired module and output type, scaling, etc...<br/>
+	<br/>
+	The node is for a single channel only so rerequires only 1 WORD ( INT ) of input data.  Output is a string value.  Status bits are output on node status only.<br/>
+	</p>
+</script>

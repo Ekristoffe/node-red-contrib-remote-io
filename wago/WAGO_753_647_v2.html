@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    RED.nodes.registerType("DALI v2",{
+        category: "remote io",
+        color: "#EBEDEC",
+        defaults: {
+            name: {value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "iconSP.png",
+        label: function() {
+            return this.name||"DALI v2";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="DALI v2">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="DALI v2">
+    <p>A node that parses individual digital input pins to modbus data.<br/>
+    
+    Select the desired size and offset of your module.  Pins are mapped from top to bottom as shown in image <br/>
+    <br/>
+    <img id="img" src="DO_node_pins.jpg"/>
+    The node will require proper offset if modbus register is being used for more than one digital module.<br/>
+    </p>
+</script>   

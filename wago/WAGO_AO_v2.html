@@ -1,0 +1,196 @@
+<script type="text/javascript">
+	RED.nodes.registerType("Analog Output v2",{
+		category: "remote io",
+		color: "#EBEDEC",
+		defaults: {
+			wordOffset: {value: 0, required: true, validate: RED.validators.number()},
+			module: {value:"none", required: true},
+			inputData: {value: "Signal", required: true},
+			sensorLow: {value: 0, required: true, validate: RED.validators.number()},
+			sensorHigh: {value: 10, required: true, validate: RED.validators.number()},
+			signalLow: {value: 4, required: true, validate: RED.validators.number()},
+			signalHigh: {value: 20, required: true, validate: RED.validators.number()},
+			rawLow: {value: 0, required: true, validate: RED.validators.number()},
+			rawHigh: {value: 32760, required: true, validate: RED.validators.number()},
+			raw2Complement: {value: true},
+			resolution: {value:"12_Bit", required: true},
+			startbit: {value: 3, required: true, validate: RED.validators.number()},
+			name: {value:""},
+			topic: {value:""}
+		},
+		inputs:1,
+		outputs:2,
+		icon: "iconAO.png",
+		label: function() {
+			return this.name||"Analog Output v2";
+		},
+		outputLabels: ["Number", "Array of Number"],
+		oneditprepare: function () {
+			let previous = null
+			let node = this
+			let moduleSelector = $("#node-input-module")
+			let inputsShow = $("#node-inputs-show")
+			moduleSelector.on("focus", function () {
+				previous = this.value
+			}).change(function () {
+				if (previous == null) {
+					previous = $("#node-input-module").val()
+				}
+				if (node.sensorLow) {
+					node.sensorLow = parseInt(node.sensorLow)
+				}
+				if (node.sensorHigh) {
+					node.sensorHigh = parseInt(node.sensorHigh)
+				}
+				switch (moduleSelector.val()) {
+					case "none":
+						node.signalLow.required = true
+						node.signalLow = parseInt(node.signalLow)
+						
+						node.signalHigh.required = true
+						node.signalHigh = parseInt(node.signalHigh)
+						
+						node.rawLow.required = true
+						node.rawLow = parseInt(node.rawLow)
+						
+						node.rawHigh.required = true
+						node.rawHigh = parseInt(node.rawHigh)
+						
+						node.resolution.required = true
+						
+						node.startbit.required = true
+						node.startbit = parseInt(node.startbit)
+						
+						inputsShow.show()
+						
+						break
+					default:
+						node.signalLow = 0
+						node.signalLow.required = false
+						
+						node.signalHigh = 10
+						node.signalHigh.required = false
+						
+						node.rawLow.value = 0
+						node.rawLow.required = false
+						
+						node.rawHigh.value = 32760
+						node.rawHigh.required = false
+						
+						node.resolution = "12_Bit"
+						node.resolution.required = false
+						
+						node.startbit = 3
+						node.startbit.required = false
+						
+						inputsShow.hide()
+						
+						break
+				}
+			})
+		}
+		
+	});
+</script>
+
+<script type="text/x-red" data-template-name="Analog Output v2">
+	<div class="form-row">
+		<label for="node-input-wordOffset"><i class="fa fa-random"></i> <span data-i18n="function.label.wordOffset" ></span>Word Offset</label>
+		<input type="text" id="node-input-wordOffset" style="width: 60px;" value="0">
+	</div>
+	<div class="form-row">
+		<label for="node-input-module"><i class="icon-tag"></i>Module Number</label>
+		<select type="text" id="node-input-module" placeholder="module">
+			<option value="none">Manual Settings</option>
+			<option value="750-550">750-550 (0 - 10 VDC)</option>
+			<option value="750-552">750-552 (0 - 20 mA)</option>
+			<option value="750-553">750-553 (0 - 20 mA)</option>
+			<option value="750-554">750-554 (4 - 20 mA)</option>
+			<option value="750-555">750-555 (4 - 20 mA)</option>
+			<option value="750-556">750-556 (-10 - 10 VDC)</option>
+			<option value="750-557">750-557 (-10 - 10 VDC)</option>
+			<option value="750-559">750-559 (0 - 10 VDC)</option>
+			<option value="750-560">750-560 (0 - 10 VDC)</option>
+			<option value="750-562">750-562 (0 - 10 VDC)</option>
+			<option value="750-563">750-563 (4 - 20 mA)</option>
+			<option value="750-597">750-597 (0 - 10 VDC)</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-outputData"><i class="icon-tag"></i>Process</label>
+		<select type="text" id="node-input-outputData" placeholder="outputData">
+			<option value="Raw">Raw Data</option>
+			<option value="Signal">Signal Value</option>
+			<option value="Sensor">Sensor Value</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-sensorLow"><i class="fa fa-arrow-down"></i>Sensor Min</label>
+		<input type="text" id="node-input-sensorLow" placeholder="lowest number"  style="width: 150px;">
+	</div>
+	<div class="form-row">
+		<label for="node-input-sensorHigh"><i class="fa fa-arrow-up"></i>Sensor Max</label>
+		<input type="text" id="node-input-sensorHigh" placeholder="highest number"  style="width: 150px;">
+	</div>
+	<div id="node-inputs-show">
+		<div class="form-row">
+			<label for="node-input-signalLow"><i class="fa fa-arrow-down"></i>Signal Min</label>
+			<input type="text" id="node-input-signalLow" placeholder="lowest number"  style="width: 150px;">
+		</div>
+		<div class="form-row">
+			<label for="node-input-signalHigh"><i class="fa fa-arrow-up"></i>Signal Max</label>
+			<input type="text" id="node-input-signalHigh" placeholder="highest number"  style="width: 150px;">
+		</div>
+		<div class="form-row">
+			<label for="node-input-rawLow"><i class="fa fa-arrow-down"></i>Raw Min</label>
+			<input type="text" id="node-input-rawLow" placeholder="lowest number"  style="width: 150px;">
+		</div>
+		<div class="form-row">
+			<label for="node-input-rawHigh"><i class="fa fa-arrow-up"></i>Raw Max</label>
+			<input type="text" id="node-input-rawHigh" placeholder="highest number"  style="width: 150px;">
+		</div>
+		<div class="form-row">
+			<label for="node-input-raw2Complement"><i class="fa fa-arrow-up"></i>Raw 2 Complement</label>
+			<input type="checkbox" id="node-input-raw2Complement" style="max-width:30px;">
+		</div>
+		
+		<div class="form-row">
+			<label for="node-input-resolution"><i class="icon-tag"></i>Resolution</label>
+			<select type="text" id="node-input-resolution" placeholder="resolution">
+				<option value="8_Bit">8 Bit</option>
+				<option value="12_Bit">12 Bit</option>
+				<option value="16_Bit">16 Bit</option>
+				<option value="20_Bit">20 Bit</option>
+				<option value="24_Bit">24 Bit</option>
+				<option value="28_Bit">28 Bit</option>
+				<option value="32_Bit">32 Bit</option>
+			</select>
+		</div>
+		<div class="form-row">
+			<label for="node-input-startbit"><i class="icon-tag"></i>Start bit</label>
+			<input type="text" id="node-input-startbit" placeholder="start bit"  style="width: 150px;">
+		</div>
+	</div>
+	<div class="form-row">
+		<label for="node-input-name"><i class="icon-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+	<div class="form-row">
+		<label for="node-input-topic"><i class="icon-tag"></i> Topic</label>
+		<input type="text" id="node-input-topic" placeholder="Topic">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="Analog Output v2">
+	<p>
+	A node that parses usable scaled data to data for the analog output modules of the WAGO 750 IO system.<br/>
+	First select the desired offset of your analog output.<br/>
+	Then select the right "Module Number", or you can use the manual settings<br/>
+	Select the desired input type, scaling, etc...<br/>
+	The node have 2 output:<br/>
+	&nbsp;- Number.<br/>
+	&nbsp;- Array of Number, this can be send to a Modbus force single/multiple register(s) request (Fc06 / Fc16).<br/>
+	<br/>
+	The node <Word Offset> and <Bit Offset> are only used for the second output.<br/>
+	</p>
+</script>
